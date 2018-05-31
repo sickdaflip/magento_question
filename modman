@@ -1,0 +1,9 @@
+app/code/local/Gastrodax/Question/*                                    app/code/local/Gastrodax/Question
+app/design/adminhtml/default/default/layout/question.xml               app/design/adminhtml/default/default/layout/question.xml
+app/design/frontend/base/default/layout/question.xml                   app/design/frontend/base/default/layout/question.xml
+app/design/frontend/base/default/template/question/form/question.phtml app/design/frontend/base/default/template/question/form/question.phtml
+app/etc/modules/*.xml                                                  app/etc/modules/
+app/locale/en_US/Gastrodax_Question.csv                                app/locale/en_US/Gastrodax_Question.csv
+app/locale/en_US/template/email/question_notification_admin.html       app/locale/en_US/template/email/question_notification_admin.html
+app/locale/de_DE/Gastrodax_Question.csv                                app/locale/de_DE/Gastrodax_Question.csv
+app/locale/de_DE/template/email/question_notification_admin.html       app/locale/de_DE/template/email/question_notification_admin.html

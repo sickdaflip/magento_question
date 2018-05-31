@@ -1,0 +1,138 @@
+<?php
+$product = Mage::registry('current_product');
+if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
+<div id="question_form" class="std">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="row expanded">
+        <div class="small-12 medium-6 columns">
+            <form action="<?php echo Mage::getBaseUrl() . 'question/index/post/'; ?>" method="post" id="question-form" data-abide novalidate>
+                <?php
+                if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+                    $customer = Mage::getSingleton('customer/session')->getCustomer();
+                }
+                ?>
+                <input type="hidden" name="sku" value="<?php echo $product->getData('sku'); ?>"/>
+                <input type="hidden" name="customer_id" value="<?php if (!empty($customer)) {
+                    echo $customer->getId();
+                } ?>"/>
+                <input type="hidden" name="wcrl" value="<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>"/>
+                <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+                <div class="field">
+                    <label for="product_name"><?php echo $this->__('Product'); ?></label>
+                    <input type="text" name="product_name" value="<?php echo $product->getData('name'); ?>" readonly/>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_name"><?php echo $this->__('Name'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="text" id="customer_name" name="customer_name"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getName();
+                                   } ?>" pattern="alpha_numeric" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter your Name.'); ?></span>
+                        </label>
+                    </div>
+                    <div class="small-12 medium-6 columns">
+                        <label for="customer_email"><?php echo $this->__('Email'); ?>
+                            <small><?php echo $this->__('required') ?></small>
+                            <input type="email" id="customer_email" name="customer_email"
+                                   value="<?php if (!empty($customer)) {
+                                       echo $customer->getEmail();
+                                   } ?>" pattern="email" required/>
+                            <span class="form-error"><?php echo $this->__('Please enter your Email.'); ?></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row expanded">
+                    <div class="small-12 medium-6 columns">
+                        <label for="comment"><?php echo $this->__('Comment'); ?>
+                            <textarea id="comment" name="comment"/></textarea>
+                        </label>
+                    </div>
+                    <div class="small-12 columns">
+                        <fieldset class="small-12 cell">
+                            <input id="dsgvo" name="dsgvo" type="checkbox" value="accept" required>
+                            <label for="dsgvo"><?php echo $this->__('Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an datenschutz@newgastroline.de widerrufen. Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer <a href="%s">Datenschutzerklärung</a>.', Mage::getUrl('datenschutz')) ?></label>
+                        </fieldset>
+                    </div>
+                </div>
+                <?php echo $this->getChildHtml('form.additional.info'); ?>
+                <button class="hollow button secondary" type="reset"><?php echo $this->__('Reset') ?></button>
+                <button type="submit" class="button float-right" title="<?php echo $this->__('Send Inquiry') ?>"><?php echo $this->__('Send Inquiry') ?></button>
+            </form>
+        </div>
+        <div class="small-12 medium-6 columns">
+            <p><strong><?php echo $this->__('Sie haben Fragen zum Produkt oder wünschen eine Vorführung?') ?></strong></p>
+            <p><?php echo $this->__('Kein Problem! Füllen Sie einfach das Kontaktformular aus und wir melden uns umgehend bei Ihnen oder besuchen Sie uns einfach in unserem Fachgeschäft.') ?></p>
+            <h4>
+                Routenplaner
+            </h4>
+            <p>
+                Wir freuen uns, Sie in unserem Fachgeschäft für Jura Professional Kaffeevollautomaten begrüßen zu dürfen.
+            </p>
+            <div class="text-center">
+                <a data-open="jura-routenplaner" class="button small jura">Jetzt Routenplanung starten</a>
+            </div>
+            <div class="reveal large" id="jura-routenplaner" data-reveal>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB02JxG7VJ-NLlN0RilY3lxYj7K6fjFSZk&callback=initMap" type="text/javascript"></script>
+                <script type="text/javascript">// <![CDATA[
+                    function initialize() {
+                        var position = new google.maps.LatLng(54.3634802,12.6898209);
+                        var position_marker = new google.maps.LatLng(54.3654827,12.7053178);
+                        var myOptions = {
+                            zoom: 5,
+                            center: position,
+                            mapTypeControlOptions: {
+                                mapTypeId: [google.maps.MapTypeId.ROADMAP, 'tehgrayz']
+                            }
+                        };
+
+                        var stylez = [
+                            {
+                                featureType: "all",
+                                elementType: "all",
+                                stylers: [
+                                    { saturation: -100 } // <-- THIS
+                                ]
+                            }
+                        ];
+
+                        var map = new google.maps.Map(
+                            document.getElementById("map_canvas"),
+                            myOptions);
+
+                        var image = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'wysiwyg/cms/gmaps-marker.png'; ?>'
+                        var marker = new google.maps.Marker({
+                            position: position_marker,
+                            map: map,
+                            title: "New Gastroline GmbH, Barthestraße 115, 18356 Barth",
+                            icon: image
+                        });
+
+                        var mapType = new google.maps.StyledMapType(stylez, { name:"Grayscale" });
+                        map.mapTypes.set('tehgrayz', mapType);
+                        map.setMapTypeId('tehgrayz');
+
+                        var contentString = '<strong>New Gastroline GmbH</strong><br>Barthestraße 115<br>18356 Barth';
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.open(map,marker);
+                        });
+
+                    }
+                    window.onload = initialize;
+                    // ]]>
+                </script>
+                <div id="map_canvas" style="width: 100%; height: 300px;"></div>
+                <div style="margin-top:1em;"><a class="button right" href="https://www.google.de/maps/place/New+Gastroline+GmbH+Servicecenter/@54.349384,12.725676,17z/data=!3m1!4b1!4m2!3m1!1s0x47ac90e5e115148b:0x5d85e9d1852bf983" rel="nofollow" target="_blank">Gro&szlig;e Kartenansicht - Routenplaner - Druckversion</a></div>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
