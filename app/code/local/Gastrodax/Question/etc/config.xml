@@ -103,7 +103,7 @@
         <models>
             <question>
                 <class>Gastrodax_Question_Model</class>
-                <resourceModel>inquiry_mysql4</resourceModel>
+                <resourceModel>question_mysql4</resourceModel>
             </question>
             <question_mysql4>
                 <class>Gastrodax_Question_Model_Mysql4</class>
