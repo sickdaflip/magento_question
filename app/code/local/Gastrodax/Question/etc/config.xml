@@ -95,11 +95,6 @@
         </translate>
     </adminhtml>
     <global>
-        <blocks>
-            <question>
-                <class>Gastrodax_Question_Block</class>
-            </question>
-        </blocks>
         <helpers>
             <question>
                 <class>Gastrodax_Question_Helper</class>
@@ -108,7 +103,7 @@
         <models>
             <question>
                 <class>Gastrodax_Question_Model</class>
-                <resourceModel>question_mysql4</resourceModel>
+                <resourceModel>inquiry_mysql4</resourceModel>
             </question>
             <question_mysql4>
                 <class>Gastrodax_Question_Model_Mysql4</class>
@@ -139,6 +134,11 @@
                 </connection>
             </question_read>
         </resources>
+        <blocks>
+            <question>
+                <class>Gastrodax_Question_Block</class>
+            </question>
+        </blocks>
         <template>
             <email>
                 <question_notification_admin module="Gastrodax_Question">
