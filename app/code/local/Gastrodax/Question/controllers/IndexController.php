@@ -25,7 +25,7 @@ class Gastrodax_Question_IndexController extends Mage_Core_Controller_Front_Acti
                     $error = true;
                 }
 
-                if (Zend_Validate::is(trim($post['dsgvo']), 'NotEmpty')) {
+                if (!Zend_Validate::is(trim($post['dsgvo']), 'NotEmpty')) {
                     $error = true;
                 }
 

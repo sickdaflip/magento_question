@@ -5,7 +5,7 @@ if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <div class="row expanded">
         <div class="small-12 medium-6 columns">
-            <form action="<?php echo Mage::getBaseUrl() . 'question/index/post/'; ?>" method="post" id="question-form" data-abide novalidate>
+            <form action="<?php echo Mage::getUrl('question/index/post/', array('_secure'=>true)); ?>" method="post" id="question-form" data-abide novalidate>
                 <?php
                 if (Mage::getSingleton('customer/session')->isLoggedIn()) {
                     $customer = Mage::getSingleton('customer/session')->getCustomer();
@@ -28,7 +28,7 @@ if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
                             <input type="text" id="customer_name" name="customer_name"
                                    value="<?php if (!empty($customer)) {
                                        echo $customer->getName();
-                                   } ?>" pattern="alpha_numeric" required/>
+                                   } ?>" required/>
                             <span class="form-error"><?php echo $this->__('Please enter your Name.'); ?></span>
                         </label>
                     </div>
@@ -56,7 +56,6 @@ if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
                         </fieldset>
                     </div>
                 </div>
-                <?php echo $this->getChildHtml('form.additional.info'); ?>
                 <button class="hollow button secondary" type="reset"><?php echo $this->__('Reset') ?></button>
                 <button type="submit" class="button float-right" title="<?php echo $this->__('Send Question') ?>"><?php echo $this->__('Send Question') ?></button>
             </form>
