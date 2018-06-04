@@ -13,6 +13,7 @@ CREATE TABLE {$this->getTable('gd_question')} (
   `customer_name` varchar(200) NOT NULL default '',
   `customer_email` varchar(200) NOT NULL default '',
   `sku` varchar(100) NOT NULL,
+  `dsgvo` smallint(6) NOT NULL,
   `comment` text NOT NULL default '',
   `created_time` datetime NOT NULL default CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL default 'OPEN',
