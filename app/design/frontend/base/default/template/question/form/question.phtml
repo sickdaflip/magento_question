@@ -5,7 +5,7 @@ if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <div class="row expanded">
         <div class="small-12 medium-6 columns">
-            <form action="<?php echo Mage::getUrl('question/index/post/', array('_secure'=>true)); ?>" method="post" id="question-form" data-abide novalidate>
+            <form action="<?php echo Mage::getUrl('question/index/post', array('_secure'=>true)); ?>" method="post" id="question-form" enctype="multipart/form-data" data-abide novalidate>
                 <?php
                 if (Mage::getSingleton('customer/session')->isLoggedIn()) {
                     $customer = Mage::getSingleton('customer/session')->getCustomer();
