@@ -63,14 +63,10 @@ if ($product->getAttributeText('manufacturer') == 'Jura'): ?>
         <div class="small-12 medium-6 columns">
             <p><strong><?php echo $this->__('Sie haben Fragen zum Produkt oder wünschen eine detailierte Vorführung und Erklärung der JURA Produkte durch unser kompetentes Verkaufspersonal?') ?></strong></p>
             <p><?php echo $this->__('Kein Problem! Füllen Sie einfach das Kontaktformular aus und wir melden uns umgehend bei Ihnen oder besuchen Sie uns einfach in unserem Fachgeschäft.') ?></p>
-            <h4>
-                Routenplaner
-            </h4>
-            <p>
-                Wir freuen uns, Sie in unserem Fachgeschäft für Jura Professional Kaffeevollautomaten begrüßen zu dürfen.
-            </p>
+            <p class="h4"> <?php echo $this->__('Routenplaner') ?></p>
+            <p><?php echo $this->__('Wir freuen uns, Sie in unserem Fachgeschäft für Jura Professional Kaffeevollautomaten begrüßen zu dürfen.') ?></p>
             <div class="text-center">
-                <a data-open="jura-routenplaner" class="button small jura">Jetzt Routenplanung starten</a>
+                <a data-open="jura-routenplaner" class="button small jura"><?php echo $this->__('Jetzt Routenplanung starten') ?></a>
             </div>
             <div class="reveal large" id="jura-routenplaner" data-reveal>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB02JxG7VJ-NLlN0RilY3lxYj7K6fjFSZk&callback=initMap" type="text/javascript"></script>
